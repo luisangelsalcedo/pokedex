@@ -64,8 +64,10 @@ const pokeAlertInfo = (pokemon)=>{
 
     //tipo de pokemon
     const pokeTypes = pokemon.types.map(t => t.type.name);
-    console.log(pokeTypes.join());
 
+    //movimientos
+    const pokeMoves = pokemon.moves.map(m => m.move.name);
+    console.log(pokeMoves.join());
 
 
     fetch(pokeAttackURL)
