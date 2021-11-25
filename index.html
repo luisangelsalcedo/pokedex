@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Api</title>
     <link rel="stylesheet" href="style.css">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <main>
         <div class="logo"></div>
         <div id="pokemones"></div>
+        <div class="info-container">
+            <a href="javascript:void(0)" onclick="cerrarModal()"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></a>
+            <div id="info"></div>
+        </div>
     </main>
 </body>
 <script src="poke.js"></script>

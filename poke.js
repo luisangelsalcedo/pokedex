@@ -1,6 +1,9 @@
 
 const API = 'https://pokeapi.co/api/v2/pokemon/';
 const pokemones = document.getElementById('pokemones');
+const info = document.getElementById('info');
+const infoContainer = document.querySelector('.info-container');
+
 
 const init = ()=>{
     fetch(API)
@@ -35,27 +38,61 @@ const pokemonHTML = (pokemon)=>{
     const pokeDiv = document.querySelector(`.poke${pokemon.id}`);
     // console.log(pokemon);
 
+    //imagen
     const pokeimg = document.createElement('img');
     pokeimg.setAttribute('src', pokemon.sprites.front_default);
 
-    const pokeAttack = pokemon.abilities[0].ability.name;
-    const pokeAttackURL = pokemon.abilities[0].ability.url;    
-    
-    pokeDiv.addEventListener('click', ()=>{
-        pokeAttackAlert(pokeAttackURL);
-    })
     pokeDiv.prepend(pokeimg);
+
+    pokeDiv.addEventListener('click', ()=>{
+        pokeAlertInfo(pokemon);
+        infoContainer.classList.add('active');
+    })
+    
 }
 
-const pokeAttackAlert = (attackURL)=>{
-    fetch(attackURL)
+const pokeAlertInfo = (pokemon)=>{
+
+    
+    //imagen
+    const pokeIMG = pokemon.sprites.other.dream_world.front_default;
+    const pokeimgFront = pokemon.sprites.front_default;
+    const pokeimgBack = pokemon.sprites.back_default;
+
+    //ataque
+    const pokeAttackURL = pokemon.abilities[0].ability.url;
+
+    //tipo de pokemon
+    const pokeTypes = pokemon.types.map(t => t.type.name);
+    console.log(pokeTypes.join());
+
+
+
+    fetch(pokeAttackURL)
         .then(response => response.json())
         .then(attack => {
             const attackName = (attack.names.find(element => element.language.name === 'es').name);
             const attackEfect = (attack.flavor_text_entries.find(element => element.language.name === 'es').flavor_text);
             const attackResponse = `${attackName}: ${attackEfect}`;
-            alert(attackResponse);
+            info.innerHTML = `
+            <div><h1>${pokemon.name}</h1><div>
+            <div class="img">
+                <img src="${pokeIMG}" alt="${pokemon.name}">
+            </div>
+            <div class="imgs">
+                <div><img src="${pokeimgFront}" alt="${pokemon.name} (vista de frente)"></div>
+                <div><img src="${pokeimgBack}" alt="${pokemon.name} (vista de trasera)"></div>
+            </div>
+            <div class="info">
+                <div><b>ataque:</b> ${attackResponse}</div>
+                <div><b>tipo:</b> ${pokeTypes.join()}</div>
+            </div>
+            `;
         });
+}
+
+const cerrarModal = ()=>{
+    infoContainer.classList.remove('active');
 }
 
 init();
