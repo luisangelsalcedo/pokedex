@@ -334,14 +334,29 @@ h3{
     color: #AAA592;
     position: absolute;
     z-index: 20;
-    right: 10px;
-    top:10px;
-    margin-top: 50%;
 }
 .info-container a:hover{
     color: #716E61;
 }
-
+.info-container a.btn-close{
+    right: 10px;
+    top:10px;
+    margin-top: 50%;
+}
+.info-container a.btn-next{
+    right: 10px;
+    bottom: 0;
+    top:0;
+    margin: auto;
+    margin-top: 100%;
+}
+.info-container a.btn-prev{
+    left: 10px;
+    bottom: 0;
+    top:0;
+    margin: auto;
+    margin-top: 100%;
+}
 
 .info-container .img,
 .info-container .imgs{
@@ -387,12 +402,23 @@ h3{
 .info-container[data-color='gray'] h1{
     color: #333;
 }
-#poke11 .img img{
-    max-width: 400px;
-    height: auto;
-}
-#poke22 .img img{
-    max-width: 400px;
+#poke11 .img img, /* metapod */
+#poke22 .img img, /* Fearow */
+#poke41 .img img, /* bat */
+#poke42 .img img, /* golbat */
+#poke49 .img img, /* venomoth */
+#poke53 .img img, /* presian */
+#poke60 .img img, /* poliwag */
+#poke63 .img img, /* abra */
+#poke74 .img img, /* geodude */
+#poke75 .img img, /* graveler */
+#poke81 .img img, /* magnemite */
+#poke89 .img img, /* muk */
+#poke98 .img img, /* krabby */
+#poke132 .img img, /* ditto */
+#poke140 .img img /* kabuto */
+{ 
+    max-width: 280px;
     height: auto;
 }
 
@@ -415,7 +441,7 @@ footer{
         width: auto;
     }
 }
-@media (min-height:700px) and (max-width:550px) {
+@media (min-height:760px) and (max-width:550px) {
     .info-container .img img{
         height: auto;
         width: 100%;
