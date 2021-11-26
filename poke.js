@@ -22,15 +22,24 @@ const createPokeContainer = pokemonJson => {
         fetch(url)
             .then(response => response.json())
             .then(pokemon => insertPokemon(pokemon))
+        
+        const pid = i + 1;
 
+        // div
         const pokeDiv = document.createElement('div');
         pokeDiv.classList.add('pokemon');
-        pokeDiv.id = i + 1;
+        pokeDiv.id = pid;
         
+        // numero de pokemon
+        const pokeNumber = document.createElement('p');
+        pokeNumber.classList.add('num');
+        pokeNumber.innerText = pid;
+
+        // nombre del pokemon
         const pokeName = document.createElement('p');
         pokeName.innerText = name;
 
-        pokeDiv.append(pokeName);
+        pokeDiv.append(pokeName, pokeNumber);
         pokemones.append(pokeDiv);
     });
 }
@@ -93,7 +102,7 @@ const pokeAlertInfo = pokemonID => {
     
 }
 
-const getDataPokemon = ({ name, sprites, abilities, species, types, moves })=>{
+const getDataPokemon = ({ id, name, sprites, abilities, species, types, moves })=>{
 
     //Habilidad ES
     // const pokeAbilitiURL = pokemon.abilities[0].ability.url;
@@ -102,6 +111,9 @@ const getDataPokemon = ({ name, sprites, abilities, species, types, moves })=>{
     //     const abilitiEfect = (abiliti.flavor_text_entries.find(element => element.language.name === 'es').flavor_text);
     //     const abilitiResponse = `<h3>Habilidad</h3> ${abilitiName}: ${abilitiEfect}`;
     // });
+
+    console.log(id)
+
 
     //imagen
     const pokeIMG = sprites.other.dream_world.front_default;
@@ -143,7 +155,7 @@ const getDataPokemon = ({ name, sprites, abilities, species, types, moves })=>{
                 <div><h3>Moves</h3> ${pokeMovesResumen}</div>
             </div>
         </div>            
-        <div class="bg"></div>
+        <div class="bg"><span class="num">${id}</span></div>
         `;
     
 }

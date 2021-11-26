@@ -98,12 +98,41 @@ h3{
     cursor: pointer;
     color: #fff;
     font-weight: bold;
-    transition: all .4s ease;
+    transition: all .2s ease;
+    position: relative;
 }
 
+.num{
+    background: rgba(255,255,255,.5);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 3px;
+    left:3px;
+    margin: 0;
+    font-size: .6em;
+    
+}
+.pokemon .num{
+    transition: all .2s ease;
+    opacity: 0;
+}
+.pokemon:hover .num{
+    opacity: 1;
+}
 
-
-
+.pokemon img{
+    transition: all .2s ease;
+    transform: scale(1);
+}
+.pokemon:hover img{
+    transform: scale(1.2);
+}
 
 .info-container{
     background: rgba(0,0,0,.5);
@@ -164,6 +193,12 @@ h3{
     left: 12px;
     right: 12px;
     box-shadow: 0 0 30px rgb(0,0,0,.1);
+}
+.info-container.active .bg .num{
+    font-size: 1em;
+    top: 20px;
+    left: 20px;
+    color: #AAA592;
 }
 .info-container a{
     display: inline-block;
@@ -250,31 +285,13 @@ h3{
 .info-container[data-color='gray'] a.btn-prev{
     color: #333 !important;
 }
-/* #poke11 .img img, 
-#poke22 .img img, 
-#poke41 .img img, 
-#poke42 .img img, 
-#poke49 .img img, 
-#poke53 .img img, 
-#poke60 .img img, 
-#poke63 .img img, 
-#poke74 .img img, 
-#poke75 .img img, 
-#poke81 .img img, 
-#poke89 .img img, 
-#poke98 .img img, 
-#poke110 .img img,
-#poke132 .img img,
-#poke140 .img img 
-{ 
-    max-width: 250px;
-    height: auto;
-} */
+
 
 .info-container .info > div {
     border-bottom: solid 1px #ddd;
     padding: 0 0 5px 0;
     font-size: .8em;
+    color: #716E61;
 }
 .info-container .info > div:last-child{
     border-bottom: 0;
@@ -455,6 +472,37 @@ footer{
     border:solid 2px var(--black);
 }
 
+.pokemon[data-color='red'] .num{
+    color: var(--red);
+}
+.pokemon[data-color='blue'] .num{
+    color: var(--blue);
+}
+.pokemon[data-color='green'] .num{
+    color: var(--green);
+}
+.pokemon[data-color='white'] .num{
+    background: var(--white-dark);
+    color: var(--white);
+}
+.pokemon[data-color='gray'] .num{
+    color: var(--gray);
+}
+.pokemon[data-color='brown'] .num{
+    color: var(--brown);
+}
+.pokemon[data-color='purple'] .num{
+    color: var(--purple);
+}
+.pokemon[data-color='yellow'] .num{
+    color: var(--yellow);
+}
+.pokemon[data-color='pink'] .num{
+    color: var(--pink);
+}
+.pokemon[data-color='black'] .num{
+    color: var(--black);
+}
 
 .info-container[data-color='red']{
     background: var(--red);
