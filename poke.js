@@ -1,5 +1,5 @@
 
-const API           = 'https://pokeapi.co/api/v2/pokemon/';
+const API = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=150';
 const pokemones     = document.getElementById('pokemones');
 const info          = document.getElementById('info');
 const infoContainer = document.querySelector('.info-container');
@@ -51,6 +51,7 @@ const pokemonHTML = (pokemon)=>{
     pokeDiv.prepend(pokeimg);
     pokeDiv.addEventListener('click', (event)=>{
         infoContainer.setAttribute('data-color', event.currentTarget.getAttribute('data-color'));
+        infoContainer.setAttribute('id', `poke${pokemon.id}`);
         pokeAlertInfo(pokemon);
     })
     
@@ -65,8 +66,8 @@ const pokeAlertInfo = (pokemon)=>{
     const pokeimgFront = pokemon.sprites.front_default;
     const pokeimgBack = pokemon.sprites.back_default;
 
-    //ataque
-    const pokeAttackURL = pokemon.abilities[0].ability.url;
+    //Habilidad
+    const pokeAbilitiURL = pokemon.abilities[0].ability.url;
 
     //tipo de pokemon
     const pokeTypes = pokemon.types.map(t => t.type.name);
@@ -87,7 +88,7 @@ const pokeAlertInfo = (pokemon)=>{
         cerrarModal();
     })
 
-    fetch(pokeAttackURL)
+    fetch(pokeAbilitiURL)
         .then(response => response.json())
         .then(attack => {
             const attackName = (attack.names.find(element => element.language.name === 'es').name);
@@ -104,7 +105,7 @@ const pokeAlertInfo = (pokemon)=>{
                     <div><img src="${pokeimgBack}" alt="${pokemon.name} (vista de trasera)"></div>
                 </div>
                 <div class="info">
-                    <div><h3>Ataque</h3> ${attackResponse}</div>
+                    <div><h3>Habilidad</h3> ${attackResponse}</div>
                     <div><h3>Movimientos</h3> ${pokeMovesResumen}</div>
                 </div>
             </div>            
@@ -120,6 +121,7 @@ const pokeAlertInfo = (pokemon)=>{
 
 const cerrarModal = ()=>{
     infoContainer.classList.remove('active');
+    info.innerHTML = '';
 }
 
 init();
