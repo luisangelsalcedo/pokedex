@@ -1,4 +1,3 @@
-
 const API           = 'https://pokeapi.co/api/v2/pokemon';
 const count         = 150;
 const pokemones     = document.getElementById('pokemones');
@@ -6,11 +5,18 @@ const info          = document.getElementById('info');
 const infoContainer = document.querySelector('.info-container');
 
 
-const init = ()=>{
-    fetch(`${API}?offset=0&limit=${count}`)
-        .then(response => response.json())
-        .then(pokemonJson => createPokeContainer(pokemonJson))
+const init = async () => {
+    // fetch(`${API}?offset=0&limit=${count}`)
+    //     .then(response => response.json())
+    //     .then(pokemonJson => createPokeContainer(pokemonJson))
+    const response = await axios.get(
+        `${API}?offset=0&limit=${count}`
+    );
+    const post = await response.data;
+    createPokeContainer(post);
 }
+
+
 
 
 const createPokeContainer = pokemonJson => {
@@ -19,9 +25,17 @@ const createPokeContainer = pokemonJson => {
 
     pokeList.forEach(({name, url}, i) => {
 
-        fetch(url)
-            .then(response => response.json())
-            .then(pokemon => insertPokemon(pokemon))
+        // fetch(url)
+        //     .then(response => response.json())
+        //     .then(pokemon => insertPokemon(pokemon))
+
+        const fetchPokemon = async () =>{
+            const response = await axios.get(url);
+            const pokemon = await response.data;
+            insertPokemon(pokemon);
+        }
+        fetchPokemon();
+
         
         const pid = i + 1;
 
@@ -55,20 +69,37 @@ const insertPokemon = ({id, sprites, species})=>{
     // especie / color
     const pokeSpeciesURL = species.url;
 
-    fetch(pokeSpeciesURL).then(response => response.json()).then(species =>{
+    // fetch(pokeSpeciesURL).then(response => response.json()).then(species =>{
+        
+    //     pokeDiv.setAttribute('data-color', species.color.name);
+    //     pokeDiv.addEventListener('click', (event) => pokeAlertInfo(event.currentTarget.id));
+    //     pokeDiv.prepend(pokeimg);
+        
+    // });
+
+    const fetchPokeSpecies = async ()=>{
+        const response = await axios.get(pokeSpeciesURL);
+        const species = await response.data;
         
         pokeDiv.setAttribute('data-color', species.color.name);
         pokeDiv.addEventListener('click', (event) => pokeAlertInfo(event.currentTarget.id));
         pokeDiv.prepend(pokeimg);
-        
-    });    
+    }
+    fetchPokeSpecies();
 }
 
 const pokeAlertInfo = pokemonID => {
 
     //get pokemon
     const pokeURL = `${API}/${pokemonID}`;
-    fetch(pokeURL).then(response => response.json()).then(pokemon => getDataPokemon(pokemon));
+    // fetch(pokeURL).then(response => response.json()).then(pokemon => getDataPokemon(pokemon));
+    
+    const fetchPokeData = async ()=>{
+        const response = await axios.get(pokeURL);
+        const pokemon = await response.data;
+        getDataPokemon(pokemon);
+    }
+    fetchPokeData();
     
     const nextID = (parseInt(pokemonID) >= count) ? 1 : parseInt(pokemonID) + 1;
     const prevID = (parseInt(pokemonID) <= 1) ? count : parseInt(pokemonID) - 1;
@@ -129,9 +160,16 @@ const getDataPokemon = ({ id, name, sprites, abilities, species, types, moves })
 
     //especie / color
     const pokeSpeciesURL = species.url;
-    fetch(pokeSpeciesURL).then(response => response.json()).then(s => {
+    // fetch(pokeSpeciesURL).then(response => response.json()).then(s => {
+    //     infoContainer.setAttribute('data-color', s.color.name);
+    // });
+
+    const fetchPokeSpecies = async ()=>{
+        const response = await axios.get(pokeSpeciesURL);
+        const s = await response.data;
         infoContainer.setAttribute('data-color', s.color.name);
-    });
+    }
+    fetchPokeSpecies();
 
     //tipo de pokemon
     const pokeTypes = types.map(t => t.type.name);
