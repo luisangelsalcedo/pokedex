@@ -1,0 +1,116 @@
+.pokemon-list {
+  .card {
+    &-red {
+      background: $color-red-light;
+      border-color: $color-red;
+      color: #fff;
+      &:hover {
+        background: $color-red;
+      }
+      .card-number {
+        color: $color-red;
+      }
+    }
+    &-blue {
+      background: $color-blue-light;
+      border-color: $color-blue;
+      color: #fff;
+      &:hover {
+        background: $color-blue;
+      }
+      .card-number {
+        color: $color-blue;
+      }
+    }
+    &-yellow {
+      background: $color-yellow-light;
+      border-color: $color-yellow;
+      color: #fff;
+      &:hover {
+        background: $color-yellow;
+      }
+      .card-number {
+        color: $color-yellow;
+      }
+    }
+
+    &-green {
+      background: $color-green-light;
+      border-color: $color-green;
+      color: #fff;
+      &:hover {
+        background: $color-green;
+      }
+      .card-number {
+        color: $color-green;
+      }
+    }
+    &-purple {
+      background: $color-purple-light;
+      border-color: $color-purple;
+      color: #fff;
+      &:hover {
+        background: $color-purple;
+      }
+      .card-number {
+        color: $color-purple;
+      }
+    }
+    &-pink {
+      background: $color-pink-light;
+      border-color: $color-pink;
+      color: #fff;
+      &:hover {
+        background: $color-pink;
+      }
+      .card-number {
+        color: $color-pink;
+      }
+    }
+
+    &-white {
+      background: $color-white-light;
+      border-color: $color-white;
+      color: #333;
+      &:hover {
+        background: $color-white;
+      }
+      .card-number {
+        color: #333;
+      }
+    }
+    &-brown {
+      background: $color-brown-light;
+      border-color: $color-brown;
+      color: #fff;
+      &:hover {
+        background: $color-brown;
+      }
+      .card-number {
+        color: $color-brown;
+      }
+    }
+    &-gray {
+      background: $color-gray-light;
+      border-color: $color-gray;
+      color: #fff;
+      &:hover {
+        background: $color-gray;
+      }
+      .card-number {
+        color: $color-gray;
+      }
+    }
+    &-black {
+      background: $color-black-light;
+      border-color: $color-black;
+      color: #fff;
+      &:hover {
+        background: $color-black;
+      }
+      .card-number {
+        color: $color-black;
+      }
+    }
+  }
+}

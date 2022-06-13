@@ -1,0 +1,24 @@
+@import "./colors.scss";
+@import "./card.scss";
+@import "./card-colors.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #444;
+  background: #eee;
+}
+
+@media (min-width: 500px) {
+  .pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .card {
+      width: 200px;
+      margin: 0.25rem;
+    }
+  }
+}
