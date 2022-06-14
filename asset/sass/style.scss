@@ -1,13 +1,16 @@
 @import "./colors.scss";
 @import "./card.scss";
 @import "./card-colors.scss";
+@import "./modal.scss";
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #444;
+  color: $color-default;
   background: #eee;
+}
+.logo {
 }
 
 @media (min-width: 500px) {
@@ -19,6 +22,19 @@ body {
     .card {
       width: 200px;
       margin: 0.25rem;
+    }
+  }
+
+  .modal {
+    &.open {
+      .container {
+        width: 450px;
+      }
+      .thumbs {
+        img {
+          margin: 0 1rem;
+        }
+      }
     }
   }
 }

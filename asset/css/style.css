@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 0.1rem #ddd;
+    border: solid 0.1rem #d3dce2;
     background: #eee;
     position: relative;
     border-radius: 1rem;
@@ -49,9 +49,9 @@
     .pokemon-list .card.pending {
       cursor: default; }
       .pokemon-list .card.pending .card-number {
-        background: #ddd; }
+        background: #d3dce2; }
       .pokemon-list .card.pending .card-image {
-        background: #ddd;
+        background: #d3dce2;
         border-radius: 6rem;
         flex-direction: column; }
         .pokemon-list .card.pending .card-image::before {
@@ -67,8 +67,9 @@
           background: #eee;
           position: absolute; }
       .pokemon-list .card.pending h3 {
+        background: #d3dce2;
         padding: 0.5rem 0;
-        background: #ddd; }
+        border-radius: 0.2rem; }
 
 .pokemon-list .card-red {
   background: #fc9d9d;
@@ -151,6 +152,123 @@
   .pokemon-list .card-black .card-number {
     color: #333; }
 
+.modal {
+  position: fixed;
+  background: #d3dce2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1o;
+  top: 50%;
+  bottom: 50%;
+  left: 50%;
+  right: 50%;
+  transition: all 0.2s ease;
+  border-radius: 100%;
+  opacity: 0; }
+  .modal .toReturn {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    cursor: pointer; }
+  .modal-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 6rem; }
+    .modal-header .left,
+    .modal-header .right {
+      position: absolute;
+      z-index: 20;
+      cursor: pointer;
+      padding: 0.5rem; }
+    .modal-header .left {
+      left: 0; }
+    .modal-header .right {
+      right: 0; }
+    .modal-header h2 {
+      padding: 0;
+      margin: 0; }
+  .modal-body {
+    background: #fff;
+    color: #444;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 8rem;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+    height: 10rem; }
+    .modal-body .number,
+    .modal-body .close {
+      position: absolute;
+      z-index: 20;
+      cursor: pointer; }
+    .modal-body .number {
+      top: 0.8rem;
+      left: 0.8rem;
+      font-size: 0.8rem;
+      font-weight: bold; }
+    .modal-body .close {
+      top: 0.1rem;
+      right: 0.3rem;
+      font-size: 1.6rem; }
+    .modal-body .image {
+      width: 11rem;
+      height: 11rem;
+      position: absolute;
+      top: -5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .modal-body .image img {
+        max-width: 100%;
+        max-height: 100%; }
+  .modal .container {
+    margin: 1rem;
+    display: none;
+    position: relative;
+    opacity: 1;
+    transition: all 0.2s ease; }
+  .modal.open {
+    top: -50%;
+    bottom: -50%;
+    left: -50%;
+    right: -50%;
+    opacity: 1; }
+    .modal.open .container {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      width: 45%; }
+  .modal-red {
+    background: #fb6c6c;
+    color: #fff; }
+  .modal-blue {
+    background: #76bdfe;
+    color: #fff; }
+  .modal-yellow {
+    background: #ffd86f; }
+  .modal-green {
+    background: #48d0b0;
+    color: #fff; }
+  .modal-purple {
+    background: #74598a;
+    color: #fff; }
+  .modal-pink {
+    background: #fc9d9d; }
+  .modal-white {
+    background: #fff; }
+  .modal-brown {
+    background: #b06f66;
+    color: #fff; }
+  .modal-gray {
+    background: #aaa; }
+
 body {
   margin: 0;
   padding: 0;
@@ -165,6 +283,11 @@ body {
     justify-content: center; }
     .pokemon-list .card {
       width: 200px;
-      margin: 0.25rem; } }
+      margin: 0.25rem; }
+
+  .modal.open .container {
+    width: 450px; }
+  .modal.open .thumbs img {
+    margin: 0 1rem; } }
 
 /*# sourceMappingURL=style.css.map */

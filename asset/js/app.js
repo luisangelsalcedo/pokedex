@@ -1,23 +1,39 @@
 import { errorResponse } from "./errorResponse.js";
 import { httpService } from "./httpService.js";
-import { $, create, capitalize } from "./utilities.js";
+import {
+  $,
+  create,
+  capitalize,
+  getIcon,
+  spriteAdapter,
+  addEvent,
+} from "./utilities.js";
 
 class Pokedex {
   constructor(div) {
-    this.limit = 150;
+    this.limit = 20;
     this.pokemons = [];
-
     this.stage = $(div) || null;
   }
 
   async init() {
+    this.addStage();
     await this.loadPokemons();
     await this.getPokemonList();
   }
 
+  addStage() {
+    const stage = `
+    <header><div class="logo"><div></header>
+    <main><div class="pokemon-list"></div></main>
+    <footer></footer>
+    <div class="modal" id="modal"><div>`;
+    this.stage.innerHTML = stage;
+  }
+
   async loadPokemons() {
     try {
-      const endpoint = `pokemon`;
+      const endpoint = `pokemon?offset=0&limit=${this.limit}`;
       const { data } = await httpService.get(endpoint);
       const pokemons = await data.results;
       this.pokemons = pokemons;
@@ -27,8 +43,7 @@ class Pokedex {
   }
 
   async getPokemonList() {
-    const pokemonList = create("div");
-    pokemonList.classList.add("pokemon-list");
+    const pokemonList = $(".pokemon-list");
     this.pokemons.forEach(async (pokemon, i) => {
       const id = i + 1;
       pokemonList.append(this.createCard(id));
@@ -38,60 +53,129 @@ class Pokedex {
 
       this.pokemons[i].data = data;
     });
-    this.stage.append(pokemonList);
   }
 
   createCard(id) {
     const card = create("a");
-    card.classList.add("card");
-    card.classList.add("pending");
-    card.id = `poke-${id}`;
+    card.classList.add("card", "pending");
+    card.id = `p${id}`;
 
-    // number
-    const number = create("div");
-    number.classList.add("card-number");
+    card.innerHTML = `
+    <div class="card-number"></div>
+    <div class="card-image"></div>
+    <h3></h3>`;
 
-    // image
-    const image = create("div");
-    image.classList.add("card-image");
-
-    // name
-    const title = create("h3");
-
-    card.append(number, image, title);
     return card;
   }
 
   async insertData(data) {
     const { id, sprites, species, name } = data;
-    const card = $(`#poke-${id}`);
+    const card = $(`#p${id}`);
+
     const number = card.querySelector(".card-number");
     const image = card.querySelector(".card-image");
     const title = card.querySelector("h3");
 
-    const source = sprites.front_default;
+    const { front } = spriteAdapter(sprites);
     const { data: specie } = await httpService(species.url);
     const { name: color } = specie.color;
 
+    this.pokemons[id - 1].color = color;
+
     number.innerHTML = id;
-    image.innerHTML = `<img src="${source}" alt="${name}">`;
+    image.innerHTML = `<img src="${front}" alt="${name}">`;
     title.innerHTML = capitalize(name);
 
     card.classList.add(`card-${color}`);
     card.classList.remove("pending");
 
     // listener
-    card.addEventListener("click", () => {
-      console.log(name);
+    card.addEventListener("click", e => {
+      this.openModal({ data, color });
     });
+  }
+
+  openModal({ data, color }) {
+    const classColor = `modal-${color}`;
+    const modal = $("#modal");
+    modal.removeAttribute("class");
+    modal.classList.add("modal", "open", classColor);
+
+    const { id, sprites, name } = data;
+    const { svg, animatedFront, animatedBack } = spriteAdapter(sprites);
+
+    const prev = id - 1 || this.limit;
+    const next = id + 1 > this.limit ? 1 : id + 1;
+
+    modal.innerHTML = `<a class='toReturn'></a>
+    <div class="container">
+      <div class="modal-header">
+        <a class="left" data-id="${prev}">${getIcon("chevron-left")}</a>
+        <a class="right" data-id="${next}">${getIcon("chevron-right")}</a>
+        <h2>${capitalize(name)}</h2>
+        <div>
+          type
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="number">${id}</div>
+        <div class="close">${getIcon("times-circle")}</div>
+        <div class="image">
+          <img src="${svg}" alt="${name}" />
+        </div>
+        <div class="content">
+          <div class="thumbs">
+            <img src="${animatedFront}" alt="${name}" />
+            <img src="${animatedBack}" alt="${name}" />
+          </div>
+          <div class="stats">
+            grafico
+          </div>
+          <div class="abilities">
+            habilidades
+          </div>
+          <div class="moves">
+            ataques
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+    // listener
+    addEvent(modal, ".toReturn", "click", e => {
+      this.closeModal(classColor);
+    });
+
+    addEvent(modal, ".close", "click", e => {
+      this.closeModal(classColor);
+    });
+
+    addEvent(modal, ".left", "click", e => {
+      this.goToOpen(e);
+    });
+
+    addEvent(modal, ".right", "click", e => {
+      this.goToOpen(e);
+    });
+  }
+
+  closeModal(classColor) {
+    const modal = $(".modal");
+    modal.classList.remove("open", classColor);
+  }
+  goToOpen(e) {
+    const id = e.currentTarget.getAttribute("data-id");
+    const { data, color } = this.pokemons[id - 1];
+    this.openModal({ data, color });
   }
 }
 
 const pokedex = new Pokedex("#app");
 pokedex.init();
 
-// SVG: sprites.other.dream_world.front_default;
-// ANIMATED: sprites.versions["generation-v"]["black-white"].animated.front_default;
+// SVG: ;
+// ANIMATED: ;
 
 // const API = "https://pokeapi.co/api/v2/pokemon";
 // const count = 150;

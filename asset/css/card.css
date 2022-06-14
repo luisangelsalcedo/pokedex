@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 0.1rem #ddd;
+    border: solid 0.1rem #d3dce2;
     background: #eee;
     position: relative;
     border-radius: 1rem;
@@ -49,9 +49,9 @@
     .pokemon-list .card.pending {
       cursor: default; }
       .pokemon-list .card.pending .card-number {
-        background: #ddd; }
+        background: #d3dce2; }
       .pokemon-list .card.pending .card-image {
-        background: #ddd;
+        background: #d3dce2;
         border-radius: 6rem;
         flex-direction: column; }
         .pokemon-list .card.pending .card-image::before {
@@ -67,7 +67,8 @@
           background: #eee;
           position: absolute; }
       .pokemon-list .card.pending h3 {
+        background: #d3dce2;
         padding: 0.5rem 0;
-        background: #ddd; }
+        border-radius: 0.2rem; }
 
 /*# sourceMappingURL=card.css.map */
