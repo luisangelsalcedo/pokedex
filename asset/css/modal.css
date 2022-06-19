@@ -38,6 +38,14 @@
     .modal-header h2 {
       padding: 0;
       margin: 0; }
+    .modal-header .types {
+      padding-top: 0.5rem; }
+      .modal-header .types div {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.6rem;
+        margin: 0.1rem; }
   .modal-body {
     background: #fff;
     color: #444;
@@ -94,25 +102,44 @@
   .modal-red {
     background: #fb6c6c;
     color: #fff; }
+    .modal-red .types div {
+      background: #a74848; }
   .modal-blue {
     background: #76bdfe;
     color: #fff; }
+    .modal-blue .types div {
+      background: #4e7ea9; }
   .modal-yellow {
     background: #ffd86f; }
+    .modal-yellow .types div {
+      background: #aa904a;
+      color: #fff; }
   .modal-green {
     background: #48d0b0;
     color: #fff; }
+    .modal-green .types div {
+      background: #308a75; }
   .modal-purple {
     background: #74598a;
     color: #fff; }
+    .modal-purple .types div {
+      background: #4d3b5c; }
   .modal-pink {
     background: #fc9d9d; }
+    .modal-pink .types div {
+      background: #a86868; }
   .modal-white {
     background: #fff; }
+    .modal-white .types div {
+      background: #ddd; }
   .modal-brown {
     background: #b06f66;
     color: #fff; }
+    .modal-brown .types div {
+      background: #754a44; }
   .modal-gray {
     background: #aaa; }
+    .modal-gray .types div {
+      background: #bbb; }
 
 /*# sourceMappingURL=modal.css.map */

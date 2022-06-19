@@ -1,4 +1,5 @@
 import { errorResponse } from "./errorResponse.js";
+import { hexStats } from "./hexStats.js";
 import { httpService } from "./httpService.js";
 import {
   $,
@@ -6,6 +7,7 @@ import {
   capitalize,
   getIcon,
   spriteAdapter,
+  statAdapter,
   addEvent,
 } from "./utilities.js";
 
@@ -23,6 +25,7 @@ class Pokedex {
   }
 
   addStage() {
+    //
     const stage = `
     <header><div class="logo"><div></header>
     <main><div class="pokemon-list"></div></main>
@@ -76,10 +79,12 @@ class Pokedex {
     const image = card.querySelector(".card-image");
     const title = card.querySelector("h3");
 
+    // pokemon data
     const { front } = spriteAdapter(sprites);
     const { data: specie } = await httpService(species.url);
     const { name: color } = specie.color;
 
+    // insert to object
     this.pokemons[id - 1].color = color;
 
     number.innerHTML = id;
@@ -95,17 +100,26 @@ class Pokedex {
     });
   }
 
+  graphicStats(stats) {
+    const graphic = `${stats
+      .map(s => `<div data-stat="${s.base}">${s.base} ${s.name}</div>`)
+      .join("")}`;
+    return graphic;
+  }
+
   openModal({ data, color }) {
     const classColor = `modal-${color}`;
     const modal = $("#modal");
     modal.removeAttribute("class");
     modal.classList.add("modal", "open", classColor);
 
-    const { id, sprites, name } = data;
+    const { id, sprites, name, types, stats } = data;
     const { svg, animatedFront, animatedBack } = spriteAdapter(sprites);
 
     const prev = id - 1 || this.limit;
     const next = id + 1 > this.limit ? 1 : id + 1;
+
+    const arrStats = statAdapter(stats);
 
     modal.innerHTML = `<a class='toReturn'></a>
     <div class="container">
@@ -113,8 +127,8 @@ class Pokedex {
         <a class="left" data-id="${prev}">${getIcon("chevron-left")}</a>
         <a class="right" data-id="${next}">${getIcon("chevron-right")}</a>
         <h2>${capitalize(name)}</h2>
-        <div>
-          type
+        <div class='types'>
+          ${types.map(t => `<div>${capitalize(t.type.name)}</div>`).join("")}
         </div>
       </div>
       
@@ -125,12 +139,10 @@ class Pokedex {
           <img src="${svg}" alt="${name}" />
         </div>
         <div class="content">
-          <div class="thumbs">
-            <img src="${animatedFront}" alt="${name}" />
-            <img src="${animatedBack}" alt="${name}" />
-          </div>
           <div class="stats">
-            grafico
+            <div class="stats-group">
+              
+            </div>
           </div>
           <div class="abilities">
             habilidades
@@ -141,6 +153,10 @@ class Pokedex {
         </div>
       </div>
     </div>`;
+
+    const canvas = hexStats(arrStats, color);
+    const graf = modal.querySelector(".stats");
+    graf.append(canvas);
 
     // listener
     addEvent(modal, ".toReturn", "click", e => {

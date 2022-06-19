@@ -49,6 +49,16 @@
       padding: 0;
       margin: 0;
     }
+    .types {
+      padding-top: 0.5rem;
+      div {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.6rem;
+        margin: 0.1rem;
+      }
+    }
   }
   &-body {
     background: #fff;
@@ -93,6 +103,8 @@
         max-height: 100%;
       }
     }
+    .stats {
+    }
   }
 
   .container {
@@ -121,35 +133,63 @@
   &-red {
     background: $color-red;
     color: #fff;
+    .types div {
+      background: $color-red-dark;
+    }
   }
   &-blue {
     background: $color-blue;
     color: #fff;
+    .types div {
+      background: $color-blue-dark;
+    }
   }
   &-yellow {
     background: $color-yellow;
+    .types div {
+      background: $color-yellow-dark;
+      color: #fff;
+    }
   }
 
   &-green {
     background: $color-green;
     color: #fff;
+    .types div {
+      background: $color-green-dark;
+    }
   }
   &-purple {
     background: $color-purple;
     color: #fff;
+    .types div {
+      background: $color-purple-dark;
+    }
   }
   &-pink {
     background: $color-pink;
+    .types div {
+      background: $color-pink-dark;
+    }
   }
 
   &-white {
     background: $color-white;
+    .types div {
+      background: $color-white-dark;
+    }
   }
   &-brown {
     background: $color-brown;
     color: #fff;
+    .types div {
+      background: $color-brown-dark;
+    }
   }
   &-gray {
     background: $color-gray;
+    .types div {
+      background: $color-gray-dark;
+    }
   }
 }

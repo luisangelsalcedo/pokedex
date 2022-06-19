@@ -21,6 +21,13 @@ export const spriteAdapter = sprites => ({
     sprites.versions["generation-v"]["black-white"].animated.back_default,
 });
 
+export const statAdapter = stat => {
+  return stat.map(s => ({
+    name: s.stat.name,
+    value: s.base_stat,
+  }));
+};
+
 export const addEvent = (parent, selector, eventString, callback) => {
   return parent
     .querySelector(selector)
