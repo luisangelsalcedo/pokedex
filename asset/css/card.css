@@ -1,0 +1,74 @@
+.pokemon-list {
+  padding: 1rem; }
+  .pokemon-list .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 0.1rem #d3dce2;
+    background: #eee;
+    position: relative;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer; }
+    .pokemon-list .card-number {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7rem;
+      background: #fff;
+      color: #aaa; }
+    .pokemon-list .card-image {
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: all 0.2s ease; }
+      .pokemon-list .card-image img {
+        width: 100%;
+        height: auto;
+        transform: scale(1);
+        transition: transform 0.2s ease; }
+    .pokemon-list .card h3 {
+      margin: 0.5rem 0 0 0;
+      padding: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem; }
+    .pokemon-list .card:hover .card-image img {
+      transform: scale(1.1); }
+    .pokemon-list .card.pending {
+      cursor: default; }
+      .pokemon-list .card.pending .card-number {
+        background: #d3dce2; }
+      .pokemon-list .card.pending .card-image {
+        background: #d3dce2;
+        border-radius: 6rem;
+        flex-direction: column; }
+        .pokemon-list .card.pending .card-image::before {
+          content: "";
+          width: 2rem;
+          height: 2rem;
+          border-radius: 2rem;
+          background: #eee; }
+        .pokemon-list .card.pending .card-image::after {
+          content: "";
+          height: 0.7rem;
+          width: 100px;
+          background: #eee;
+          position: absolute; }
+      .pokemon-list .card.pending h3 {
+        background: #d3dce2;
+        padding: 0.5rem 0;
+        border-radius: 0.2rem; }
+
+/*# sourceMappingURL=card.css.map */

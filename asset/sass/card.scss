@@ -1,0 +1,98 @@
+@import "./colors.scss";
+
+.pokemon-list {
+  padding: 1rem;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 0.1rem $color-skeleton-dark;
+    background: #eee;
+    position: relative;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &-number {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7rem;
+      background: #fff;
+      color: #aaa;
+    }
+    &-image {
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      img {
+        width: 100%;
+        height: auto;
+        transform: scale(1);
+        transition: transform 0.2s ease;
+      }
+    }
+
+    h3 {
+      margin: 0.5rem 0 0 0;
+      padding: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      .card-image {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &.pending {
+      cursor: default;
+
+      .card-number {
+        background: $color-skeleton-dark;
+      }
+      .card-image {
+        background: $color-skeleton-dark;
+        border-radius: 6rem;
+        flex-direction: column;
+
+        &::before {
+          content: "";
+          width: 2rem;
+          height: 2rem;
+          border-radius: 2rem;
+          background: #eee;
+        }
+        &::after {
+          content: "";
+          height: 0.7rem;
+          width: 100px;
+          background: #eee;
+          position: absolute;
+        }
+      }
+      h3 {
+        background: $color-skeleton-dark;
+        padding: 0.5rem 0;
+        border-radius: 0.2rem;
+      }
+    }
+  }
+}
