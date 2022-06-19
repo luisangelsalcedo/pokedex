@@ -1,7 +1,48 @@
-export const hexStats = (params, color) => {
+export const hexStats = (params, color, size) => {
   const canvas = document.createElement("canvas");
-  canvas.width = 300;
-  canvas.height = 300;
+  canvas.width = size;
+  canvas.height = size;
+
+  switch (color) {
+    case "red":
+      color = "#A74848";
+      break;
+
+    case "yellow":
+      color = "#AA904A";
+      break;
+
+    case "blue":
+      color = "#4E7EA9";
+      break;
+
+    case "green":
+      color = "#308A75";
+      break;
+
+    case "purple":
+      color = "#4D3B5C";
+      break;
+
+    case "pink":
+      color = "#A86868";
+      break;
+
+    case "brown":
+      color = "#754A44";
+      break;
+
+    case "white":
+      color = "#ddd";
+      break;
+
+    case "gray":
+      color = "#bbb";
+      break;
+
+    default:
+      break;
+  }
 
   const initial_rot = 0;
   const grad_to_rad = Math.PI / 180;
@@ -9,7 +50,7 @@ export const hexStats = (params, color) => {
   const sides = 6;
   const margin = 2;
   const line_width = 0.5;
-  const part_scale = 0.2;
+  const part_scale = 0.3;
 
   const fontColor = "#333";
   const lineColor = "#333";
@@ -21,15 +62,6 @@ export const hexStats = (params, color) => {
   const canvas_ref = Math.min(canvas.height - margin, canvas.width - margin);
   const font_size = canvas_ref * 0.045;
   const line_len = (canvas_ref / 2) * 0.85;
-
-  //   const params = [
-  //     { name: "hp", value: 0.2 },
-  //     { name: "attack", value: 0.2 },
-  //     { name: "defense", value: 0.3 },
-  //     { name: "special attack", value: 0.4 },
-  //     { name: "special defense", value: 0.5 },
-  //     { name: "speed", value: 0.6 },
-  //   ];
 
   if (canvas.getContext) {
     const ctx = canvas.getContext("2d");
@@ -75,7 +107,7 @@ export const hexStats = (params, color) => {
     ctx.font = font_size + "px arial";
     ctx.strokeStyle = paramLineColor;
     ctx.fillStyle = paramFillColor;
-    ctx.moveTo(0, -line_len * (params[0].value / 100));
+    ctx.moveTo(0, -line_len * (params[0].value / 250));
 
     for (var i = 0; i < sides; ++i) {
       ctx.save();
@@ -86,9 +118,9 @@ export const hexStats = (params, color) => {
       if (total_rot > 90 * grad_to_rad && total_rot < 270 * grad_to_rad) {
         ctx.rotate(180 * grad_to_rad);
       }
-      ctx.fillText(params[i].name, 0, 0);
+      // ctx.fillText(params[i].name, 0, 0);
       ctx.restore();
-      ctx.lineTo(0, -line_len * (params[i].value / 100));
+      ctx.lineTo(0, -line_len * (params[i].value / 250));
       ctx.rotate(rot);
     }
 

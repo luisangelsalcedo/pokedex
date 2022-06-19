@@ -13,7 +13,7 @@ import {
 
 class Pokedex {
   constructor(div) {
-    this.limit = 20;
+    this.limit = 150;
     this.pokemons = [];
     this.stage = $(div) || null;
   }
@@ -100,10 +100,23 @@ class Pokedex {
     });
   }
 
-  graphicStats(stats) {
-    const graphic = `${stats
-      .map(s => `<div data-stat="${s.base}">${s.base} ${s.name}</div>`)
-      .join("")}`;
+  graphicStats(stats, color) {
+    const graphic = `
+    <div class="stats-group">
+      ${stats
+        .map(
+          s => `
+        <div class="stats-item ${s.name}">
+          <div>${capitalize(s.name)}</div>
+          <div class="bg-${color}">
+            <div style='width:${s.value / 2.6}%'>
+              ${s.value}
+            </div>
+          </div>
+        </div>`
+        )
+        .join("")}
+    </div>`;
     return graphic;
   }
 
@@ -139,22 +152,19 @@ class Pokedex {
           <img src="${svg}" alt="${name}" />
         </div>
         <div class="content">
+          <div class="thumb">
+              <img src="${animatedFront}" alt="${name}" />
+              <img src="${animatedBack}" alt="${name}" />
+          </div>
           <div class="stats">
-            <div class="stats-group">
-              
-            </div>
+            ${this.graphicStats(arrStats, color)}
           </div>
-          <div class="abilities">
-            habilidades
-          </div>
-          <div class="moves">
-            ataques
-          </div>
+         
         </div>
       </div>
     </div>`;
 
-    const canvas = hexStats(arrStats, color);
+    const canvas = hexStats(arrStats, color, 200);
     const graf = modal.querySelector(".stats");
     graf.append(canvas);
 

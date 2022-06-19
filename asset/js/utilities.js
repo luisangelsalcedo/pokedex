@@ -22,10 +22,11 @@ export const spriteAdapter = sprites => ({
 });
 
 export const statAdapter = stat => {
-  return stat.map(s => ({
-    name: s.stat.name,
-    value: s.base_stat,
-  }));
+  return stat.map(s => {
+    const name = s.stat.name;
+    const value = s.base_stat;
+    return { name, value };
+  });
 };
 
 export const addEvent = (parent, selector, eventString, callback) => {

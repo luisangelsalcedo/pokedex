@@ -10,7 +10,15 @@ body {
   color: $color-default;
   background: #eee;
 }
+header {
+  display: flex;
+  justify-content: center;
+}
 .logo {
+  background: url(../img/logo.png) no-repeat 0 0;
+  background-size: cover;
+  width: 200px;
+  height: 80px;
 }
 
 @media (min-width: 500px) {
@@ -29,10 +37,121 @@ body {
     &.open {
       .container {
         width: 450px;
+        position: relative;
       }
       .thumbs {
         img {
           margin: 0 1rem;
+        }
+      }
+      .stats {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        canvas {
+          display: block;
+        }
+        &-group {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 10rem;
+        }
+        &-item {
+          position: absolute;
+          font-size: 0.8rem;
+
+          div + div {
+            color: #333;
+            padding: 0;
+            font-size: 0.8rem;
+            display: inline;
+            background: transparent;
+            div {
+              display: inline;
+              background: transparent !important;
+            }
+          }
+
+          &.hp {
+            bottom: 100px;
+            text-align: center;
+          }
+          &.attack {
+            bottom: 50px;
+            left: 100%;
+          }
+          &.speed {
+            bottom: 50px;
+            right: 100%;
+            text-align: right;
+          }
+          &.special-attack {
+            top: 100px;
+            text-align: center;
+          }
+          &.special-defense {
+            top: 50px;
+            right: 100%;
+            text-align: right;
+          }
+          &.defense {
+            top: 50px;
+            left: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-height: 550px) {
+  .modal {
+    &-header {
+      color: #333;
+      position: absolute;
+      padding-bottom: 0;
+      top: 2rem;
+      width: 120%;
+      left: -10%;
+      right: -10%;
+      top: 0;
+      bottom: 0;
+
+      .types {
+        position: absolute;
+        left: 5.7rem;
+        top: 0.1rem;
+        color: #fff;
+      }
+
+      h2 {
+        position: absolute;
+        left: 4.5rem;
+        bottom: 1.5rem;
+        font-size: 1.3rem;
+      }
+    }
+    &-body {
+      flex-direction: row;
+      padding-top: 0;
+
+      .image {
+        position: static;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+      .content {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .thumbs {
+        img {
+          width: 1rem;
         }
       }
     }

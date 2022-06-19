@@ -54,9 +54,8 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 8rem;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
-    height: 10rem; }
+    padding-top: 5rem;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2); }
     .modal-body .number,
     .modal-body .close {
       position: absolute;
@@ -82,6 +81,49 @@
       .modal-body .image img {
         max-width: 100%;
         max-height: 100%; }
+    .modal-body .content {
+      width: 100%;
+      padding-bottom: 2rem; }
+    .modal-body .thumb {
+      display: flex;
+      justify-content: space-around;
+      height: 4rem;
+      flex: 1; }
+    .modal-body .stats canvas {
+      display: none; }
+    .modal-body .stats-group {
+      width: 100%;
+      padding: 0.7rem;
+      box-sizing: border-box;
+      font-size: 0.8rem; }
+    .modal-body .stats-item {
+      margin-bottom: 0.3rem; }
+      .modal-body .stats-item div + div {
+        color: #fff;
+        font-size: 0.6rem;
+        background: #eee; }
+        .modal-body .stats-item div + div div {
+          padding: 0.3rem; }
+        .modal-body .stats-item div + div.bg-red div {
+          background: #a74848; }
+        .modal-body .stats-item div + div.bg-blue div {
+          background: #4e7ea9; }
+        .modal-body .stats-item div + div.bg-yellow div {
+          background: #aa904a; }
+        .modal-body .stats-item div + div.bg-green div {
+          background: #308a75; }
+        .modal-body .stats-item div + div.bg-purple div {
+          background: #4d3b5c; }
+        .modal-body .stats-item div + div.bg-pink div {
+          background: #a86868; }
+        .modal-body .stats-item div + div.bg-white div {
+          background: #ddd; }
+        .modal-body .stats-item div + div.bg-brown div {
+          background: #754a44; }
+        .modal-body .stats-item div + div.bg-gray div {
+          background: #bbb; }
+        .modal-body .stats-item div + div.bg-black div {
+          background: #000; }
   .modal .container {
     margin: 1rem;
     display: none;
@@ -127,11 +169,16 @@
   .modal-pink {
     background: #fc9d9d; }
     .modal-pink .types div {
+      color: #fff;
       background: #a86868; }
   .modal-white {
     background: #fff; }
     .modal-white .types div {
       background: #ddd; }
+    .modal-white .stats-item div + div {
+      color: #333; }
+      .modal-white .stats-item div + div div {
+        background: #ddd !important; }
   .modal-brown {
     background: #b06f66;
     color: #fff; }
@@ -141,5 +188,11 @@
     background: #aaa; }
     .modal-gray .types div {
       background: #bbb; }
+  .modal-black {
+    background: #333;
+    color: #fff; }
+    .modal-black .types div {
+      color: #fff;
+      background: #000; }
 
 /*# sourceMappingURL=modal.css.map */

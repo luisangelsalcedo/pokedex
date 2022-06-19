@@ -208,9 +208,8 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 8rem;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
-    height: 10rem; }
+    padding-top: 5rem;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2); }
     .modal-body .number,
     .modal-body .close {
       position: absolute;
@@ -236,6 +235,49 @@
       .modal-body .image img {
         max-width: 100%;
         max-height: 100%; }
+    .modal-body .content {
+      width: 100%;
+      padding-bottom: 2rem; }
+    .modal-body .thumb {
+      display: flex;
+      justify-content: space-around;
+      height: 4rem;
+      flex: 1; }
+    .modal-body .stats canvas {
+      display: none; }
+    .modal-body .stats-group {
+      width: 100%;
+      padding: 0.7rem;
+      box-sizing: border-box;
+      font-size: 0.8rem; }
+    .modal-body .stats-item {
+      margin-bottom: 0.3rem; }
+      .modal-body .stats-item div + div {
+        color: #fff;
+        font-size: 0.6rem;
+        background: #eee; }
+        .modal-body .stats-item div + div div {
+          padding: 0.3rem; }
+        .modal-body .stats-item div + div.bg-red div {
+          background: #a74848; }
+        .modal-body .stats-item div + div.bg-blue div {
+          background: #4e7ea9; }
+        .modal-body .stats-item div + div.bg-yellow div {
+          background: #aa904a; }
+        .modal-body .stats-item div + div.bg-green div {
+          background: #308a75; }
+        .modal-body .stats-item div + div.bg-purple div {
+          background: #4d3b5c; }
+        .modal-body .stats-item div + div.bg-pink div {
+          background: #a86868; }
+        .modal-body .stats-item div + div.bg-white div {
+          background: #ddd; }
+        .modal-body .stats-item div + div.bg-brown div {
+          background: #754a44; }
+        .modal-body .stats-item div + div.bg-gray div {
+          background: #bbb; }
+        .modal-body .stats-item div + div.bg-black div {
+          background: #000; }
   .modal .container {
     margin: 1rem;
     display: none;
@@ -281,11 +323,16 @@
   .modal-pink {
     background: #fc9d9d; }
     .modal-pink .types div {
+      color: #fff;
       background: #a86868; }
   .modal-white {
     background: #fff; }
     .modal-white .types div {
       background: #ddd; }
+    .modal-white .stats-item div + div {
+      color: #333; }
+      .modal-white .stats-item div + div div {
+        background: #ddd !important; }
   .modal-brown {
     background: #b06f66;
     color: #fff; }
@@ -295,6 +342,12 @@
     background: #aaa; }
     .modal-gray .types div {
       background: #bbb; }
+  .modal-black {
+    background: #333;
+    color: #fff; }
+    .modal-black .types div {
+      color: #fff;
+      background: #000; }
 
 body {
   margin: 0;
@@ -302,6 +355,16 @@ body {
   font-family: sans-serif;
   color: #444;
   background: #eee; }
+
+header {
+  display: flex;
+  justify-content: center; }
+
+.logo {
+  background: url(../img/logo.png) no-repeat 0 0;
+  background-size: cover;
+  width: 200px;
+  height: 80px; }
 
 @media (min-width: 500px) {
   .pokemon-list {
@@ -313,8 +376,89 @@ body {
       margin: 0.25rem; }
 
   .modal.open .container {
-    width: 450px; }
+    width: 450px;
+    position: relative; }
   .modal.open .thumbs img {
-    margin: 0 1rem; } }
+    margin: 0 1rem; }
+  .modal.open .stats {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .modal.open .stats canvas {
+      display: block; }
+    .modal.open .stats-group {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10rem; }
+    .modal.open .stats-item {
+      position: absolute;
+      font-size: 0.8rem; }
+      .modal.open .stats-item div + div {
+        color: #333;
+        padding: 0;
+        font-size: 0.8rem;
+        display: inline;
+        background: transparent; }
+        .modal.open .stats-item div + div div {
+          display: inline;
+          background: transparent !important; }
+      .modal.open .stats-item.hp {
+        bottom: 100px;
+        text-align: center; }
+      .modal.open .stats-item.attack {
+        bottom: 50px;
+        left: 100%; }
+      .modal.open .stats-item.speed {
+        bottom: 50px;
+        right: 100%;
+        text-align: right; }
+      .modal.open .stats-item.special-attack {
+        top: 100px;
+        text-align: center; }
+      .modal.open .stats-item.special-defense {
+        top: 50px;
+        right: 100%;
+        text-align: right; }
+      .modal.open .stats-item.defense {
+        top: 50px;
+        left: 100%; } }
+@media (max-height: 550px) {
+  .modal-header {
+    color: #333;
+    position: absolute;
+    padding-bottom: 0;
+    top: 2rem;
+    width: 120%;
+    left: -10%;
+    right: -10%;
+    top: 0;
+    bottom: 0; }
+    .modal-header .types {
+      position: absolute;
+      left: 5.7rem;
+      top: 0.1rem;
+      color: #fff; }
+    .modal-header h2 {
+      position: absolute;
+      left: 4.5rem;
+      bottom: 1.5rem;
+      font-size: 1.3rem; }
+  .modal-body {
+    flex-direction: row;
+    padding-top: 0; }
+    .modal-body .image {
+      position: static;
+      padding-left: 2rem;
+      padding-right: 2rem; }
+    .modal-body .content {
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: column-reverse; }
+    .modal-body .thumbs img {
+      width: 1rem; } }
 
 /*# sourceMappingURL=style.css.map */
