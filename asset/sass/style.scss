@@ -149,10 +149,8 @@ header {
         display: flex;
         flex-direction: column-reverse;
       }
-      .thumbs {
-        img {
-          width: 1rem;
-        }
+      .thumb {
+        flex: 1;
       }
     }
   }
