@@ -458,7 +458,7 @@ header {
       padding-bottom: 1rem;
       display: flex;
       flex-direction: column-reverse; }
-    .modal-body .thumbs img {
-      width: 1rem; } }
+    .modal-body .thumb {
+      flex: 1; } }
 
 /*# sourceMappingURL=style.css.map */
